@@ -1,0 +1,19 @@
+// Compile-time stub of the classic (de.robv) Xposed API surface used by the
+// module. The real implementation is provided by the Xposed framework at
+// runtime; this bundle is NOT packaged into the APK (used compileOnly).
+plugins {
+    id "com.android.library"
+}
+
+android {
+    namespace "de.robv.android.xposed"
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+    }
+
+    lint {
+        abortOnError false
+    }
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:label="IME Landscape Fix"
+        android:allowBackup="false">
+
+        <meta-data android:name="xposedmodule" android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="Landscape: full-width keyboard (IME) window. Removes the display-cutout side inset that vivo/OriginOS applies to IME windows." />
+        <meta-data android:name="xposedminversion" android:value="82" />
+        <meta-data android:name="xposedscope" android:value="android" />
+    </application>
+</manifest>
