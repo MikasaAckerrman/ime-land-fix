@@ -42,3 +42,14 @@ LSPosed → Logs → filter `ImeLandFix`:
 
 - GBoard floating/resizing behaviour (a separate GBoard-side setting).
 - Portrait layout trimming (may be added later as an option).
+
+## Defect log (review 05.11)
+
+- D1 (fatal): hook used non-existent `WindowState.getWindowFrames()` on AOSP 15 → replaced with direct `mWindowFrames` field access (AOSP15 removed the method). Verified against aosp-mirror android-15.0.0_r3 sources.
+- D2 (risk): entry-point candidate list contained generic name `layout` which could hook unrelated methods → removed; candidates now `layoutWindowLw/applyLayoutLw/computeLayoutLw`.
+- D3 (CI-fatal): root `build.gradle` declared only the `application` plugin version while `:stub` uses `com.android.library` → plugin resolution failed instantly; declared both at same version.
+- D4 (verification-gap): APK contains TWO dex files (`classes.dex`=R stub, `classes2.dex`=hook classes); initial single-dex verification false-negatived the module. Verified via classes2 scan + utf-16 manifest scan: MainHook present, `layoutWindowLw` present, xposedmetadata present.
+
+## CI
+
+GitHub Actions builds on every push to `main`; artifact `ime-land-fix-debug-apk`. Runner's preinstalled SDK is used (no `setup-android` — that action fails against current runner images with "Failed to find package 'tools'").
