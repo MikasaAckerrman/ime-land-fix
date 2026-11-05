@@ -39,6 +39,12 @@ jobs:
       - name: Build
         run: gradle :app:assembleDebug --no-daemon --stacktrace
 
+      - name: Dump compiled artifacts
+        run: |
+          echo "--- .class files:"; find app/build/intermediates/javac -name '*.class' | sort
+          echo "--- .dex files:"; find app/build -name '*.dex' | sort
+          echo "--- apk listing:"; unzip -l app/build/outputs/apk/debug/*.apk | tail -12
+
       - uses: actions/upload-artifact@v4
         with:
           name: ime-land-fix-debug-apk
