@@ -16,7 +16,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - uses: android-actions/setup-android@v3
+      # NOTE: android-actions/setup-android intentionally omitted — the runner
+      # image already ships a full SDK with pre-accepted licenses, and the
+      # action tries `sdkmanager tools` which no longer exists and fails the
+      # job ("Failed to find package 'tools'").
 
       - uses: gradle/actions/setup-gradle@v4
         with:
